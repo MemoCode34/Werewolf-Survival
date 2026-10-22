@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://dqjbhhk761sis"]
+
+[ext_resource type="Script" uid="uid://b0jjudtvdergs" path="res://Scripts/player.gd" id="1_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://blypvdvkj1h05" path="res://icon.svg" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://b0u7736qjhldr" path="res://Scripts/movement_component.gd" id="3_vgqql"]
+[ext_resource type="Script" uid="uid://cd2pj6u8ww0fs" path="res://Scripts/input_component.gd" id="4_fkybt"]
+[ext_resource type="Script" uid="uid://h2hvjfyqrbxv" path="res://Scripts/health_component.gd" id="5_fkybt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_moenx"]
+size = Vector2(30, 30)
+
+[node name="Player" type="CharacterBody2D" unique_id=991320467 node_paths=PackedStringArray("move_comp", "inp_comp", "hp")]
+script = ExtResource("1_cvnsp")
+move_comp = NodePath("MovementComponent")
+inp_comp = NodePath("InputComponent")
+hp = NodePath("HealthComponent")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=201944118]
+modulate = Color(0, 1, 0, 1)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_v0iea")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=838242487]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_moenx")
+
+[node name="MovementComponent" type="Node" parent="." unique_id=1522612467]
+script = ExtResource("3_vgqql")
+max_speed = Vector2(1000, 1000)
+acceleration = 900.0
+friction = 1000.0
+metadata/_custom_type_script = "uid://b0u7736qjhldr"
+
+[node name="InputComponent" type="Node" parent="." unique_id=1392310018]
+script = ExtResource("4_fkybt")
+metadata/_custom_type_script = "uid://cd2pj6u8ww0fs"
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1227205243]
+script = ExtResource("5_fkybt")
+max_health = 100.0
+over_heal_rate = 0.5
+metadata/_custom_type_script = "uid://h2hvjfyqrbxv"
